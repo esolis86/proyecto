@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <bean id="acueductoGateway" class="data.AcueductoGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="acueductoModule" class="domain.AcueductoModule">
+        <property name="gateway" ref="acueductoGateway"/>
+    </bean>
+	 <bean id="tuberiaGateway" class="data.TuberiaGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="tuberiaModule" class="domain.TuberiaModule">
+        <property name="gateway" ref="tuberiaGateway"/>
+    </bean>
+	<bean id="valvulaGateway" class="data.ValvulaGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+	<bean id="valvulaModule" class="domain.ValvulaModule">
+        <property name="gateway" ref="valvulaGateway"/>
+    </bean>
+		<bean id="medidorGateway" class="data.MedidorGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+	<bean id="medidorModule" class="domain.MedidorModule">
+        <property name="gateway" ref="medidorGateway"/>
+    </bean>
+	<bean id="estacionBombeoGateway" class="data.EstacionBombeoGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+	<bean id="estacionBombeoModule" class="domain.EstacionBombeoModule">
+        <property name="gateway" ref="estacionBombeoGateway"/>
+    </bean>
+	<bean id="bombaGateway" class="data.BombaGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+	<bean id="bombaModule" class="domain.BombaModule">
+        <property name="gateway" ref="bombaGateway"/>
+    </bean>
+	<bean id="pozoGateway" class="data.PozoGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+	<bean id="pozoModule" class="domain.PozoModule">
+        <property name="gateway" ref="pozoGateway"/>
+    </bean>
+	<bean id="tanqueGateway" class="data.TanqueGateway">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+	<bean id="tanqueModule" class="domain.TanqueModule">
+        <property name="gateway" ref="tanqueGateway"/>
+    </bean>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <context:property-placeholder location="WEB-INF/jdbc.properties"/>
+</beans>
